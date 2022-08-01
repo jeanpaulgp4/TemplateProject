@@ -9,6 +9,7 @@
 #include <iostream>
 #include "glsl.h"
 #include <time.h>
+#include "Arbol.h"
 
 //-----------------------------------------------------------------------------
 
@@ -16,56 +17,61 @@
 class myWindow : public cwc::glutWindow
 {
 protected:
-   cwc::glShaderManager SM;
-   cwc::glShader *shader;
-   GLuint ProgramObject;
-   clock_t time0,time1;
-   float timer010;  // timer counting 0->1->0
-   bool bUp;        // flag if counting up or down.
+    cwc::glShaderManager SM;
+    cwc::glShader* shader;
+    GLuint ProgramObject;
+    clock_t time0, time1;
+    float timer010;  // timer counting 0->1->0
+    bool bUp;        // flag if counting up or down.
+    Arbol* MiArbol;
 
 
 public:
-	myWindow(){}
+    myWindow() {}
 
-	virtual void OnRender(void)
-	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-      //timer010 = 0.09; //for screenshot!
-      glPushMatrix();
-      if (shader) shader->begin();
-         //glRotatef(timer010*360, 0.5, 1.0f, 0.1f);
-         //glutSolidTeapot(1.0);
-      glTranslatef(0,-1,-7);
-      glPushMatrix();
+    virtual void OnRender(void)
+    {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        //timer010 = 0.09; //for screenshot!
+        glPushMatrix();
+        if (shader) shader->begin();
+        //glRotatef(timer010*360, 0.5, 1.0f, 0.1f);
+        //glutSolidTeapot(1.0);
+        glTranslatef(0, -1, -7);
+        glPushMatrix();
 
         glPushMatrix();
-            glTranslatef(3,0,0);
-            glutSolidTeapot(0.5);
-        glPopMatrix();
-
-        glPushMatrix();
-            glTranslatef(0, -3, 0);
-            glutSolidTeapot(0.5);
-        glPopMatrix();
-
-        glPushMatrix();
-            glTranslatef(-3, 0, 0);
-            glutSolidTeapot(0.5);
-        glPopMatrix();
-
-        glPushMatrix();
-            glRotatef(45, 0, 0, 1);
             glTranslatef(3, 0, 0);
-            glutSolidCube(0.5);
+            glutSolidTeapot(0.5);
         glPopMatrix();
 
         glPushMatrix();
-            glRotatef(-30, 0, 0, 1);
-            glTranslatef(-3, 0, 0);
-            glutSolidCube(0.5);
+            MiArbol->DibujarArbol(-3.0 ,0.0 ,0.0);
         glPopMatrix();
 
+        glPushMatrix();
+        glTranslatef(0, -3, 0);
+        glutSolidCube(0.5);
+        glPopMatrix();
+        /*
+        glPushMatrix();
+        glTranslatef(-3, 0, 0);
+        glutSolidTeapot(0.5);
+        glPopMatrix();
+
+        glPushMatrix();
+        glRotatef(45, 0, 0, 1);
+        glTranslatef(3, 0, 0);
+        glutSolidCube(0.5);
+        glPopMatrix();
+
+        glPushMatrix();
+        glRotatef(-30, 0, 0, 1);
+        glTranslatef(-3, 0, 0);
+        glutSolidCube(0.5);
+        glPopMatrix();
+        */
         glPushMatrix();
             glTranslatef(0, 3, 0);
             glBegin(GL_TRIANGLES);
@@ -109,6 +115,8 @@ public:
       time0 = clock();
       timer010 = 0.0f;
       bUp = true;
+
+      MiArbol = new Arbol();
 
       DemoLight();
 
