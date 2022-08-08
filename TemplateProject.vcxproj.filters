@@ -31,6 +31,9 @@
     <Filter Include="Clasespropias">
       <UniqueIdentifier>{18f889c7-a7b7-46cb-aa05-796a3ff264ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objetos">
+      <UniqueIdentifier>{dd7c239d-41ce-45e9-b3ef-4bdd13cd3af9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glew\include\Gl\glew.h">
@@ -74,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="Arbol.h">
       <Filter>Clasespropias</Filter>
+    </ClInclude>
+    <ClInclude Include="Cola.h">
+      <Filter>Objetos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +167,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Arbol.cpp">
       <Filter>Clasespropias</Filter>
+    </ClCompile>
+    <ClCompile Include="Cola.cpp">
+      <Filter>Objetos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

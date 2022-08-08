@@ -10,6 +10,8 @@
 #include "glsl.h"
 #include <time.h>
 #include "Arbol.h"
+#include "Cola.h"
+#define ROTA 25
 
 //-----------------------------------------------------------------------------
 
@@ -24,6 +26,7 @@ protected:
     float timer010;  // timer counting 0->1->0
     bool bUp;        // flag if counting up or down.
     Arbol* MiArbol;
+    Cola* MiCola;
 
 
 public:
@@ -37,51 +40,19 @@ public:
         glPushMatrix();
         if (shader) shader->begin();
         //glRotatef(timer010*360, 0.5, 1.0f, 0.1f);
-        //glutSolidTeapot(1.0);
         glTranslatef(0, -1, -7);
-        glPushMatrix();
 
         glPushMatrix();
-            glTranslatef(3, 0, 0);
-            glutSolidTeapot(0.5);
-        glPopMatrix();
 
-        glPushMatrix();
-            MiArbol->DibujarArbol(-3.0 ,0.0 ,0.0);
-        glPopMatrix();
+            glPushMatrix();
 
-        glPushMatrix();
-        glTranslatef(0, -3, 0);
-        glutSolidCube(0.5);
-        glPopMatrix();
-        /*
-        glPushMatrix();
-        glTranslatef(-3, 0, 0);
-        glutSolidTeapot(0.5);
-        glPopMatrix();
+                MiCola->DibujarCola(-2, 0, 0);
+                MiCola->DibujarCola(4, 0, 0);
 
-        glPushMatrix();
-        glRotatef(45, 0, 0, 1);
-        glTranslatef(3, 0, 0);
-        glutSolidCube(0.5);
-        glPopMatrix();
+            glPopMatrix();
 
-        glPushMatrix();
-        glRotatef(-30, 0, 0, 1);
-        glTranslatef(-3, 0, 0);
-        glutSolidCube(0.5);
-        glPopMatrix();
-        */
-        glPushMatrix();
-            glTranslatef(0, 3, 0);
-            glBegin(GL_TRIANGLES);
-                glVertex3f(0.5, 0, 0);
-                glVertex3f(0, 1.0, 0);
-                glVertex3f(-0.5, 0, 0);
-            glEnd();
-        glPopMatrix();
 
-      glPopMatrix();
+        glPopMatrix();
 
 
 
@@ -117,6 +88,7 @@ public:
       bUp = true;
 
       MiArbol = new Arbol();
+      MiCola = new Cola();
 
       DemoLight();
 
